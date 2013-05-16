@@ -79,6 +79,7 @@ module OmniAuth
       def callback_phase
         Rails.logger.warn("RESPONSE")
         Rails.logger.warn(openid_response)
+        Rails.logger.warn("message: #{openid_response.message}")
         Rails.logger.warn("success? : #{openid_response && openid_response.status == :success}")
         return fail!(:invalid_credentials) unless openid_response && openid_response.status == :success
         super
