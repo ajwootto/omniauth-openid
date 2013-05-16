@@ -43,7 +43,7 @@ module OmniAuth
         i = nil if i == ''
         i
       end
-      
+
       def request_phase
         identifier ? start : get_identifier
       end
@@ -77,6 +77,8 @@ module OmniAuth
       end
 
       def callback_phase
+        Rails.logger.warn("RESPONSE")
+        Rails.logger.warn(openid_response)
         return fail!(:invalid_credentials) unless openid_response && openid_response.status == :success
         super
       end
